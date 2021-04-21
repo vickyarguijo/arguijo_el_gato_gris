@@ -1,5 +1,7 @@
+import {CartWidget} from '../cartwidget/cartwidget'
 import logo from '../../images/logo.png'
 import './navbar.css'
+
 export const Navbar = () => {
     return (
         <header className='header'>
@@ -15,6 +17,9 @@ export const Navbar = () => {
                     <li className='navItem'><a href="#">Contacto</a></li>
                 </ul>
             </nav>
+            
+            <CartWidget />
+           
         </header>
         
     )
