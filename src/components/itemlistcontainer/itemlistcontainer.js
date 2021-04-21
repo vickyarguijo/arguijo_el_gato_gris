@@ -1,7 +1,9 @@
+import './itemlistcontainer.css'
+
 export const ItemListContainer = (props) => {
     
     return (
-        <p>Hola!, {props.user.name} {props.user.lastName}</p>
+        <p className='greeting'>Hola!, {props.user.name} {props.user.lastName}</p>
         
     )
     
