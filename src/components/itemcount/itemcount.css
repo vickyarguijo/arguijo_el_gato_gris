@@ -1,0 +1,31 @@
+.itemQuantityContainer {
+    width: 200px;
+    height: 40px;
+    margin: 0 auto;
+    border: 1px solid #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.operator {
+    width: 20px;
+    height: 20px;
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: bold;
+    color: #7402a8;
+    margin: 0 10px;
+    border: 1px solid #7402a8;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.addToCartBtn {
+    width: 200px;
+    height: 40px;
+    margin: 10px 0;
+    background: #ebebeb;
+    border: 2px solid #333;
+    border-radius: 10px;
+}
