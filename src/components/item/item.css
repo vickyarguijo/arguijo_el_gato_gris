@@ -1,0 +1,14 @@
+.item {
+    background: #ff9393;
+    width: 300px;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 20px;
+}
+.item img {
+    width: 200px;
+    height: auto;
+    margin: 0 auto;
+}
