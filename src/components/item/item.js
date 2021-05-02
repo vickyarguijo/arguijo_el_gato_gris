@@ -4,7 +4,6 @@ import React, {Component, useState} from 'react';
 
 export const Item = ({id, title, price, pictureURL}) => {
 
-    console.log(pictureURL)
     return (
         <div className="item">
            

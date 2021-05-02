@@ -14,19 +14,22 @@ export const ItemList = (props) => {
         id: 56789,    
         title: "Mate Harry Potter",
         price: 2000,
-        pictureURL: {productMateHP},
+        description: "Esta es la descripción del Mate Harry Potter",
+        pictureURL: productMateHP,
       },
       {
         id: 12345,    
         title: "Maceta Gato Negro",
         price: 1500,
-        pictureURL: {productMacetaGato},
+        description: "Esta es la descripción de la maceta Gato Negro",
+        pictureURL: productMacetaGato,
       },
       {
         id: 5678,    
         title: "Porta Celular Gato",
         price: 1700,
-        pictureURL: {productPortaCeluGato},
+        description: "Esta es la descripción del Porta Celu Gato",
+        pictureURL: productPortaCeluGato,
       },
     ]
 
@@ -50,7 +53,7 @@ export const ItemList = (props) => {
            <button onClick={()=>getProducts(products)}>Listar Productos</button>
 
            {products.length >0 ? (productData.map((product) => 
-                <Item id={product.id} title={product.title} price={product.price} pictureURL={product.pictureURL}  />
+                <Item id={product.id} title={product.title} price={product.price} pictureURL={product.pictureURL} />
            )) : (<p>No tengo productos</p>)}
            
         </div>
