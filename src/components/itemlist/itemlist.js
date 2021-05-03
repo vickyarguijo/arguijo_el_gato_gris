@@ -11,21 +11,24 @@ export const ItemList = (props) => {
 
     const products = [
         {
-        id: 56789,    
+        id: 56789, 
+        categoryId: "ofertas",   
         title: "Mate Harry Potter",
         price: 2000,
         description: "Esta es la descripción del Mate Harry Potter",
         pictureURL: productMateHP,
       },
       {
-        id: 12345,    
+        id: 12345, 
+        categoryId: "ofertas",   
         title: "Maceta Gato Negro",
         price: 1500,
         description: "Esta es la descripción de la maceta Gato Negro",
         pictureURL: productMacetaGato,
       },
       {
-        id: 5678,    
+        id: 5678,   
+        categoryId: "catlovers", 
         title: "Porta Celular Gato",
         price: 1700,
         description: "Esta es la descripción del Porta Celu Gato",
@@ -47,13 +50,20 @@ export const ItemList = (props) => {
          
     }
 
+    useEffect(
+      () => {
+      getProducts(products).then(result => {
+          console.log(result)
+          
+      });
+      getProducts(products)
+  }, [])
 
     return (
-        <div>
-           <button onClick={()=>getProducts(products)}>Listar Productos</button>
-
+        <div className="itemList">
+           
            {products.length >0 ? (productData.map((product) => 
-                <Item id={product.id} title={product.title} price={product.price} pictureURL={product.pictureURL} />
+                <Item id={product.id} category={product.categoryId} title={product.title} price={product.price} pictureURL={product.pictureURL} />
            )) : (<p>No tengo productos</p>)}
            
         </div>

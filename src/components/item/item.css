@@ -1,14 +1,16 @@
 .item {
-    background: #ff9393;
-    width: 300px;
-    height: auto;
-    display: block;
+    background: #d1faee;
+    width: 90%;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-radius: 20px;
-    padding: 10px;
-    margin: 20px;
+    padding: 20px;
+    margin: 20px auto;
 }
 .item img {
-    width: 200px;
+    width: 150px;
     height: auto;
-    margin: 0 auto;
+    
 }
