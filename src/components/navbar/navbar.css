@@ -6,35 +6,44 @@
     align-items: center;
     
 }
-.nav {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
-}
-.logoContainer p {
+.logoContainer {
+    text-decoration: none;
     margin: 0;
-    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    font-weight: bold;
-    line-height: 1.5rem;
-    color: #333;
 }
 .logo {
     width: 100px;
     height: auto;
 }
+.brandName {
+    margin: 0;
+    text-decoration: none;
+    color: #038181;
+    font-weight: 600;
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+.nav_active {
+    color: #038181;
+    text-decoration: none;
+
+}
+.nav_inactive {
+    color: #666;
+    text-decoration: none;
+}
+
 .navItem {
     list-style-type: none;
     margin: 0 20px;
-}
-.navItem a {
-    color: #666;
     text-decoration: none;
     font-size: 0.9rem;
     line-height: 1rem;
     font-weight: 500;
-}
-.navItem a:hover, .navItem a:focus {
-    color: #999;
-    font-weight: bold;
 }

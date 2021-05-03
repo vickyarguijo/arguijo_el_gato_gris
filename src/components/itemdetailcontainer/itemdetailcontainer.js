@@ -1,13 +1,14 @@
 import './itemdetailcontainer.css'
-import React, {Component, useState, useEffect} from 'react';
+import React, {Component, useState, useEffect, useParams} from 'react';
 import {ItemDetail} from '../itemdetail/itemdetail'
 
+
 export const ItemDetailContainer = (props) => {
+    const {item} = useParams();
 
     const [itemToShow, setItemToShow] = useState([]);
 
-
-    /* Get Item with 2sec Delay */
+    /* Get Item with 2sec Delay  */
     const getItems = (item) => {
         return new Promise ((resolve, reject) => {
             console.log("buscando item")
@@ -31,5 +32,5 @@ export const ItemDetailContainer = (props) => {
             )
         });
     }, [])
-   
+  
 }
