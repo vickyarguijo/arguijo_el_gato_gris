@@ -25,10 +25,15 @@ function App() {
               <ItemListContainer user={userData} />
             </Route>
             <Route exact path="/item/:itemId">
-              <ItemListContainer user={userData} />
+              <ItemDetailContainer />
             </Route>
+            <Route exact path="/itemdetailcontainer/:id">
+              <ItemDetailContainer />
+            </Route>
+
         </main>
       </Switch>
+      
     </BrowserRouter>
   );
 }

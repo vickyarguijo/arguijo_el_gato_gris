@@ -1,14 +1,17 @@
 import './itemlist.css'
-import React, {Component, useState, useEffect} from 'react';
+import React, {Component, useState, useEffect} from 'react'
+import {useParams} from 'react-router-dom'
 import {Item} from '../item/item'
 import productMateHP from '../../images/product_mate.jpg'
 import productMacetaGato from '../../images/product_maceta_gato.jpg'
 import productPortaCeluGato from '../../images/product_porta_celu_gato.jpg'
 
+
 export const ItemList = (props) => {
     const [productData, setProductData] = useState([]);
     
-
+    
+  
     const products = [
         {
         id: 56789, 
@@ -35,17 +38,17 @@ export const ItemList = (props) => {
         pictureURL: productPortaCeluGato,
       },
     ]
-
+   
 
     const getProducts = (products) => { 
         return new Promise ((resolve, reject) => {
-            console.log("buscando producto")
+            console.log(products)
             setTimeout( () => {
                 resolve(products)}, 2000)
         })
          .then(
             setProductData(products)
-
+            
          ) 
          
     }
@@ -62,7 +65,7 @@ export const ItemList = (props) => {
     return (
         <div className="itemList">
            
-           {products.length >0 ? (productData.map((product) => 
+           {productData.length >0 ? (productData.map((product) => 
                 <Item id={product.id} category={product.categoryId} title={product.title} price={product.price} pictureURL={product.pictureURL} />
            )) : (<p>No tengo productos</p>)}
            
