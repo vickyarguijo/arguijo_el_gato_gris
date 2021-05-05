@@ -2,16 +2,21 @@ import './itemlist.css'
 import React, {Component, useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {Item} from '../item/item'
-import productMateHP from '../../images/product_mate.jpg'
-import productMacetaGato from '../../images/product_maceta_gato.jpg'
-import productPortaCeluGato from '../../images/product_porta_celu_gato.jpg'
-
+import products from '../../products'
 
 export const ItemList = (props) => {
     const [productData, setProductData] = useState([]);
     
-    
-  
+    let { categoryId } = useParams()
+  console.log(categoryId)
+    let filteredProducts = []
+
+  if (categoryId)  {
+	   filteredProducts = products.filter((product) => product.category === categoryId)
+  } else {
+    filteredProducts = products
+  }
+  /*
     const products = [
         {
         id: 56789, 
@@ -38,11 +43,12 @@ export const ItemList = (props) => {
         pictureURL: productPortaCeluGato,
       },
     ]
+    */
    
 
     const getProducts = (products) => { 
         return new Promise ((resolve, reject) => {
-            console.log(products)
+            
             setTimeout( () => {
                 resolve(products)}, 2000)
         })
@@ -59,14 +65,18 @@ export const ItemList = (props) => {
           console.log(result)
           
       });
-      getProducts(products)
-  }, [])
+      getProducts(filteredProducts)
+  }, [categoryId])
 
     return (
         <div className="itemList">
            
            {productData.length >0 ? (productData.map((product) => 
-                <Item id={product.id} category={product.categoryId} title={product.title} price={product.price} pictureURL={product.pictureURL} />
+                <Item id={product.id} 
+                      category={product.category} 
+                      title={product.title} 
+                      price={product.price} 
+                      pictureURL={product.image.pictureURL} />
            )) : (<p>No tengo productos</p>)}
            
         </div>
