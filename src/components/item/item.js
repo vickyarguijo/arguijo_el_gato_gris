@@ -3,9 +3,9 @@ import React, {Component, useState} from 'react'
 import {Link, useParams} from 'react-router-dom'
 
 
-export const Item = ({id, categoryId, title, price, pictureURL}) => {
+export const Item = ({id, category, title, price, pictureURL}) => {
 
-    const [item, setItem] = useState({id, categoryId, title, price, pictureURL});
+    const [item, setItem] = useState({id, category, title, price, pictureURL});
 
     return (
         <div className="item">

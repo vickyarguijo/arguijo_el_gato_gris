@@ -8,7 +8,7 @@ export const ItemList = (props) => {
     const [productData, setProductData] = useState([]);
     
     let { categoryId } = useParams()
-  console.log(categoryId)
+  
     let filteredProducts = []
 
   if (categoryId)  {
@@ -16,34 +16,7 @@ export const ItemList = (props) => {
   } else {
     filteredProducts = products
   }
-  /*
-    const products = [
-        {
-        id: 56789, 
-        categoryId: "ofertas",   
-        title: "Mate Harry Potter",
-        price: 2000,
-        description: "Esta es la descripción del Mate Harry Potter",
-        pictureURL: productMateHP,
-      },
-      {
-        id: 12345, 
-        categoryId: "ofertas",   
-        title: "Maceta Gato Negro",
-        price: 1500,
-        description: "Esta es la descripción de la maceta Gato Negro",
-        pictureURL: productMacetaGato,
-      },
-      {
-        id: 5678,   
-        categoryId: "catlovers", 
-        title: "Porta Celular Gato",
-        price: 1700,
-        description: "Esta es la descripción del Porta Celu Gato",
-        pictureURL: productPortaCeluGato,
-      },
-    ]
-    */
+  
    
 
     const getProducts = (products) => { 

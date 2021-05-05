@@ -2,22 +2,23 @@ import './itemdetail.css'
 import React, {Component, useState} from 'react';
 
 
-export const ItemDetail = ({id}) => {
-    console.log(id)
-    /* Falta traer el array de productos para comparar con el id 
+export const ItemDetail = ({id, category, title, description, price, pictureURL}) => {
+    
+    const [item, setItem] = useState({id, category, title, description, price, pictureURL});
+    console.log(pictureURL)
    return (
         <div className="itemDetail">
            
-             <h4>{item.title}</h4>
-             <img src={item.pictureURL} />
-             <p>Precio: ${item.price}</p>
-             <p>Descripción: {item.description}</p> 
-             <p>ID del producto: {item.id}</p>
+             <h4>{title}</h4>
+             <img src={pictureURL} />
+             <p>Precio: ${price}</p>
+             <p>Descripción: {description}</p> 
+             <p>ID del producto: {id}</p>
              
             
         </div>
         
-    ) */
+    ) 
     return (
         <div className="itemDetail">
            
