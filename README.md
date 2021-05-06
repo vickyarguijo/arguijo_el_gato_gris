@@ -1,3 +1,7 @@
+Mi proyecto consiste en una tienda de artículos varios impresos en 3D. La tienda se llama "El Gato Gris" y cuenta con una sección llamada "Cat Lovers" donde se mostrarán todos los productos relacionados con gatos. También tiene una sección aparte para los productos en oferta. El catálogo completo se mostrará en el home. 
+
+
+----------------------------------------------------
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
