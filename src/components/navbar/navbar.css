@@ -29,16 +29,17 @@
     font-family: 'Quicksand', Arial, Helvetica, sans-serif;
     text-decoration: none;
 }
-.nav_active {
-    color: #038181;
-    text-decoration: none;
 
-}
 .nav_inactive {
     color: #666;
     text-decoration: none;
 }
+.nav_active {
+    color: #038181;
+    font-weight: bold;
+    text-decoration: none;
 
+}
 .navItem {
     list-style-type: none;
     margin: 0 20px;

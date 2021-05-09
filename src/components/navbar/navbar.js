@@ -14,8 +14,8 @@ export const Navbar = () => {
             </Link>
             <nav>
                 <ul className='nav'>
-                    <li className='navItem'><NavLink exact to={'/'} activeClassName="nav_active" className="nav_inactive">Home</NavLink></li>
-                    <li className='navItem'><NavLink exact to={'/category/ofertas'} activeClassName="nav_active" className="nav_inactive">Ofertas</NavLink></li>
+                    <li className='navItem'><NavLink exact to={'/'} activeClassName="nav_active" className="nav_inactive" >Home</NavLink></li>
+                    <li className='navItem'><NavLink exact to={'/category/ofertas'} activeClassName="nav_active" className="nav_inactive" >Ofertas</NavLink></li>
                     <li className='navItem'><NavLink exact to={'/category/catlovers'} activeClassName="nav_active" className="nav_inactive">Cat Lovers</NavLink></li>
                 </ul>
             </nav>
