@@ -35,7 +35,7 @@ export const ItemList = (props) => {
                     title={product.title} 
                     price={product.price} 
                     pictureURL={product.image.pictureURL} />
-         )) : (<p>No tengo productos</p>)
+         )) : (<p>Cargando productos</p>)
       )
   }
   

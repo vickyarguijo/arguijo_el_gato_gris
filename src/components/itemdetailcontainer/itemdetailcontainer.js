@@ -6,40 +6,43 @@ import products from '../../products'
 
 
 export const ItemDetailContainer = (props) => {
-    const {id} = useParams();
+    const {id} = useParams(); 
     
     console.log (`param ${id}`)
+        
+    const [itemToShow, setItemToShow] = useState('');
     
-   
-    let foundItem = products.find((product) => product.id == id)
+    let foundItem = ''
 
-    const [itemToShow, setItemToShow] = useState(foundItem);
-   
-    
     const getItems = (products) => {
-        return new Promise((res, rej) => {
-          res(products)
-            
-          })
-         .then(
+      return new Promise((res, rej) => {
+        res(products)
+          
+        })
+       .then ( 
+        foundItem = products.find((product) => product.id == id)
+         
+        )
+        
+       .then( 
           setItemToShow(foundItem)
-         )
-        
-    }  
-
-  /*  useEffect(
+       )
+    }
+    useEffect(
       () => {
-        
-         getItems(products)
-     
-  }, [id]) */
+      setTimeout (() => {
+
+        getItems(products)
+       
+      },1000)
+  }, [id])
 
     console.log(`este es ${itemToShow.title}`)
  
             return (
-                
+               
                     <div className="itemDetailContainer">
-                                                
+                           { (itemToShow) ? (                     
                         <ItemDetail id={itemToShow.id}
                               category={itemToShow.category} 
                               title={itemToShow.title} 
@@ -47,7 +50,7 @@ export const ItemDetailContainer = (props) => {
                               price={itemToShow.price}
                               pictureURL={itemToShow.image.pictureURL}
                                />
-                         
+                               ) : (<p>Cargando detalles del producto</p>)}
                     </div>
                 
             ) 
