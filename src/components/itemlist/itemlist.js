@@ -20,19 +20,11 @@ export const ItemList = (props) => {
     
     const getProducts = (products) => { 
         return new Promise ((resolve, reject) => {
-            
-            setTimeout( () => {
-                resolve(products)}, 2000)
-        })
+           resolve(products) 
+          })
         .then(
           setProductData(products)
-          
         ) 
-         .then(
-            setProductData(products)
-            
-         ) 
-         
     }
 
     const showFilteredProducts = (productData) => {
@@ -49,10 +41,9 @@ export const ItemList = (props) => {
   
     useEffect(
       () => {
-       
-
-      getProducts(filteredProducts)
-
+      setTimeout (() => {
+          getProducts(filteredProducts)
+        },1000)
   }, [categoryId])
 
     return (

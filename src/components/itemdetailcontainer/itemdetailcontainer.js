@@ -10,33 +10,29 @@ export const ItemDetailContainer = (props) => {
     
     console.log (`param ${id}`)
     
+   
+    let foundItem = products.find((product) => product.id == id)
 
-    const foundItem = products.find((product) => product.id == id)
-
-    const [itemToShow, setItemToShow] = useState('');
-   /* const getItems = (id) => setItemToShow(foundItem) */
-
-    /* Get Item with 2sec Delay */
-    const getItems = (id) => {
+    const [itemToShow, setItemToShow] = useState(foundItem);
+   
+    
+    const getItems = (products) => {
         return new Promise((res, rej) => {
+          res(products)
             
-              return res(id)
-          
           })
          .then(
-            setItemToShow(foundItem)
-            
-         ) 
+          setItemToShow(foundItem)
+         )
+        
     }  
 
-    useEffect(
+  /*  useEffect(
       () => {
-        getItems(id).then(result => {
-          console.log(result)
-          
-      });
-      getItems(id)
-  }, [id]) 
+        
+         getItems(products)
+     
+  }, [id]) */
 
     console.log(`este es ${itemToShow.title}`)
  
@@ -48,7 +44,8 @@ export const ItemDetailContainer = (props) => {
                               category={itemToShow.category} 
                               title={itemToShow.title} 
                               description={itemToShow.description}
-                              price={itemToShow.price} 
+                              price={itemToShow.price}
+                              pictureURL={itemToShow.image.pictureURL}
                                />
                          
                     </div>
