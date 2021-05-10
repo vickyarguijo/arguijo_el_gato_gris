@@ -3,7 +3,7 @@ import React, {Component, useState} from 'react';
 import {Link} from 'react-router-dom'
 import {ItemCount} from '../itemcount/itemcount'
 
-export const ItemDetail = ({id, category, title, description, price, pictureURL, onAdd}) => {
+export const ItemDetail = ({id, category, title, description, price, pictureURL}) => {
     
     const [item, setItem] = useState({id, category, title, description, price, pictureURL});
     
