@@ -37,6 +37,7 @@ export const ItemDetailContainer = (props) => {
       },1000)
   }, [id])
 
+    
     console.log(`este es ${itemToShow.title}`)
  
             return (
@@ -49,6 +50,7 @@ export const ItemDetailContainer = (props) => {
                               description={itemToShow.description}
                               price={itemToShow.price}
                               pictureURL={itemToShow.image.pictureURL}
+                              
                                />
                                ) : (<p>Cargando detalles del producto</p>)}
                     </div>

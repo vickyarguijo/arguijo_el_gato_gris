@@ -1,7 +1,7 @@
 import './itemcount.css'
 import React, {Component, useState} from 'react';
 
-export const ItemCount = ({stock, initial}) => {
+export const ItemCount = ({stock, initial, onAdd}) => {
     const [quantity, setQuantity] = useState(initial);
 
     function subtract(quantity) {
@@ -16,7 +16,6 @@ export const ItemCount = ({stock, initial}) => {
         }
     }
 
-    const onAdd = (quantity) => alert(`Agregaste ${quantity} productos al carrito`)
 
     return (
         <div className="itemCount">
