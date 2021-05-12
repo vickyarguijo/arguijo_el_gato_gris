@@ -1,7 +1,7 @@
 import './itemcount.css'
 import React, {Component, useState} from 'react';
 
-export const ItemCount = ({stock, initial, onAdd}) => {
+export const ItemCount = ({id, stock, initial, onAdd}) => {
     const [quantity, setQuantity] = useState(initial);
 
     function subtract(quantity) {
@@ -24,7 +24,7 @@ export const ItemCount = ({stock, initial, onAdd}) => {
                 <div className="quantity">{quantity}</div>
                 <div className="operator" onClick={ () => add(quantity, stock)}>+</div>
             </div>
-            <button className="addToCartBtn" onClick={ () => onAdd(quantity)}>Agregar al Carrito</button>
+            <button className="addToCartBtn" onClick={ () => onAdd(id, quantity)}>Agregar al Carrito</button>
         </div>
         
     )

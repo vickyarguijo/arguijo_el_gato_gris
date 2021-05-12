@@ -2,6 +2,8 @@ import './itemdetail.css'
 import React, {Component, useState} from 'react';
 import {Link} from 'react-router-dom'
 import {ItemCount} from '../itemcount/itemcount'
+import {useContext} from 'react'
+import {CartContext} from '../context/cartcontext'
 
 export const ItemDetail = ({id, category, title, description, price, pictureURL}) => {
     
@@ -10,11 +12,16 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL}
     /* Saves onAdd quantity from itemCount */
     const [quantityToAdd, setQuantityToAdd] = useState(0)
 
-    /* Item Count Add Handler */
-    const handleAdd = (quantity) => {
-        setQuantityToAdd(quantity)
-        }
+    /* Adds item to cart using context addItem function */
+    const {addItem} = useContext(CartContext)
 
+    /* Item Count Add Handler */
+    const handleAdd = (id, quantity) => {
+        setQuantityToAdd(quantity)
+        /* Adds item to cart using context addItem function */
+        addItem(id)
+        }
+console.log(quantityToAdd)
    return (
         <div className="itemDetail">
             
@@ -28,7 +35,7 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL}
                 <p className="itemDetailId">ID del producto: {id}</p>
 
                 {(quantityToAdd == 0) ? (
-                <ItemCount stock="5" initial={1} onAdd={handleAdd} />
+                <ItemCount stock="5" initial={1} onAdd={handleAdd} id={id} />
                 ) : (<Link exact to={'/cart'}><button className="">Finalizar Compra</button></Link>)}
                 
 
