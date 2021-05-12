@@ -19,9 +19,9 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL}
     const handleAdd = (id, quantity) => {
         setQuantityToAdd(quantity)
         /* Adds item to cart using context addItem function */
-        addItem(id)
+        addItem(id, quantity)
         }
-console.log(quantityToAdd)
+
    return (
         <div className="itemDetail">
             
