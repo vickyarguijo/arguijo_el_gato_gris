@@ -19,17 +19,17 @@ export const CartProvider = ({children}) => {
 
     const cartTotalNumber = (cart) => {
         /* adds all cart.quantity to get total amount of items */
-        
         var totalProducts = 0
         for(let x in cart){
-            totalProducts += cart[x].quantity; //NO FUNCIONA
+            totalProducts += cart[x].quantity; //adds all quantity in cart
           }
           console.log(totalProducts)
-        return totalProducts;
+        setCartQuantity(totalProducts)
     }
 
     useEffect( () => {
-        setCartQuantity(cartTotalNumber)
+        cartTotalNumber(cart)
+        //setCartQuantity(cartTotalNumber)
     }, [cart]
     )
 
