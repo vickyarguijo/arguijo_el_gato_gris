@@ -1,6 +1,6 @@
 import {useContext} from 'react'
 import {CartContext} from '../context/cartcontext'
-
+import {Link} from 'react-router-dom'
 
 export const Cart = () => {
     const {cart} = useContext(CartContext);
@@ -19,7 +19,7 @@ export const Cart = () => {
                     <button onClick={() => removeItem(cartItem.id)}>Quitar del carrito</button>
                 </div>
               
-         )) : <p>Tu carrito se encuentra vacío</p> }
+         )) : <p>Tu carrito se encuentra vacío. Vuelve al <Link exact to="/">home</Link> para agregar productos.</p> }
 
             {cart.length > 0 && <button onClick={clearCart}>Vaciar Carrito</button>}
          </div>
