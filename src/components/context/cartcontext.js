@@ -9,9 +9,22 @@ export const CartProvider = ({children}) => {
 
 
     const addItem = (id, quantity, title, pictureURL, price) => {
-       
-       setCart([...cart, {id, quantity, title, pictureURL, price}])
-       
+       /* Check if the item is in cart */
+       let isPresent = false;
+       let newCart = [...cart]
+       if (cart.some(product => product.id === id)) {
+        isPresent = true;
+       }
+       if (isPresent) {
+         for(let i = 0; i < newCart.length; i ++) {
+            if(newCart[i][id] === id) {
+             newCart[i][quantity] += quantity
+            }}
+        setCart(newCart)
+        console.log(newCart)
+       } else {
+        setCart([...cart, {id, quantity, title, pictureURL, price}])
+       }
     }
 
     console.log(cart)
@@ -22,17 +35,29 @@ export const CartProvider = ({children}) => {
     }
 
     const isInCart = (id, quantity, cart) => {
-        let foundId = id;
-        /*
+       let isPresent = false;
+
+       if (cart.includes(id)) {
+        isPresent = true; 
+       }
+       if (isPresent) {
+         for(let i = 0; i < cart.length; i ++) {
+            if(cart[i][id] === id) {
+            cart[i][quantity] += quantity
+            }} 
+       }
+
+        /* let foundId = id;
+        
        if (cart.some(item => item.id === id)) {
             cart[id=id].quantity += quantity
-          } */
+          } 
         if (cart.some(item => item.id === id)) {
             for(let i = 0; i < cart.length; i ++) {
                 if(cart[i][id] === foundId) {
                 cart[i][quantity] += quantity
                 }}
-        }
+        } */
     }
 
     const clearCart = () => {
