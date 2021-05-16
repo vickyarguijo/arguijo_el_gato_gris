@@ -9,14 +9,15 @@ export const CartProvider = ({children}) => {
 
 
     const addItem = (id, quantity, title, pictureURL, price) => {
+       
        setCart([...cart, {id, quantity, title, pictureURL, price}])
        
     }
-    
+
     console.log(cart)
 
     const removeItem = (itemId) => {
-        const newCart = cart.filter((item) => itemId.id !== itemId)
+        const newCart = cart.filter((item) => item.id !== itemId)
         setCart(newCart)
     }
 
