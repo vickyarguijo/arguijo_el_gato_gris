@@ -10,11 +10,30 @@ export const CartProvider = ({children}) => {
 
     const addItem = (id, quantity) => {
        setCart([...cart, {id, quantity}])
+       
     }
     console.log(cart)
     const removeItem = (itemId) => {
         const newCart = cart.filter((item) => itemId.id !== itemId)
         setCart(newCart)
+    }
+
+    const isInCart = (id, quantity, cart) => {
+        let foundId = id;
+        /*
+       if (cart.some(item => item.id === id)) {
+            cart[id=id].quantity += quantity
+          } */
+        if (cart.some(item => item.id === id)) {
+            for(let i = 0; i < cart.length; i ++) {
+                if(cart[i][id] === foundId) {
+                cart[i][quantity] += quantity
+                }}
+        }
+    }
+
+    const clearCart = () => {
+        setCart([]);
     }
 
     const cartTotalNumber = (cart) => {
@@ -34,7 +53,7 @@ export const CartProvider = ({children}) => {
     )
 
     return (
-        <CartContext.Provider value={{cart,cartQuantity,addItem, removeItem}}>
+        <CartContext.Provider value={{cart,cartQuantity,addItem, removeItem, isInCart}}>
             {children}
         </CartContext.Provider>
     )
