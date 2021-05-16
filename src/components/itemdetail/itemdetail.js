@@ -16,10 +16,10 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL}
     const {addItem} = useContext(CartContext)
 
     /* Item Count Add Handler */
-    const handleAdd = (id, quantity) => {
+    const handleAdd = (id, quantity, title, pictureURL, price) => {
         setQuantityToAdd(quantity)
         /* Adds item to cart using context addItem function */
-        addItem(id, quantity)
+        addItem(id, quantity, title, pictureURL, price)
         }
 
    return (
@@ -35,7 +35,7 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL}
                 <p className="itemDetailId">ID del producto: {id}</p>
 
                 {(quantityToAdd == 0) ? (
-                <ItemCount stock="5" initial={1} onAdd={handleAdd} id={id} />
+                <ItemCount stock="5" initial={1} onAdd={handleAdd} id={id} title={title} pictureURL={pictureURL} price={price} />
                 ) : (<Link exact to={'/cart'}><button className="">Finalizar Compra</button></Link>)}
                 
 
