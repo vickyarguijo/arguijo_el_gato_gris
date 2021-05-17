@@ -9,7 +9,7 @@ export const CartWidget = () => {
     
     return (
         
-            <div className={cartQuantity.cartQuantity ? 'cartwidget' : 'hide'}>
+            <div className={cartQuantity.cartQuantity ? 'cartwidget' : 'cartwidget_vacio'}>
                 <Link to={`/cart`}>
                     <img src={cartImg} alt="Carrito de compras" />
                 </Link>

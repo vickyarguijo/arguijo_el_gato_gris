@@ -2,6 +2,7 @@
     width: 30px;
     height: auto;
 }
-.hide {
-    display: none;
+.cartwidget_vacio img {
+    width: 30px;
+    height: auto;
 }
