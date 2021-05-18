@@ -5,4 +5,8 @@
 .cartwidget_vacio img {
     width: 30px;
     height: auto;
+    
+}
+.cartwidget_vacio {
+    opacity: .2;
 }
