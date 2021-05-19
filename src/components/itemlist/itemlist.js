@@ -1,31 +1,34 @@
 import './itemlist.css'
-import React, {Component, useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {Item} from '../item/item'
-import products from '../../products'
+import {getFirestore} from '../../firebase/index'
 
 export const ItemList = (props) => {
     const [productData, setProductData] = useState([]);
     
     let { categoryId } = useParams()
   
+    /*
     let filteredProducts = []
+    
     
     if (categoryId)  {
       filteredProducts = products.filter((product) => product.category === categoryId)
    } else {
      filteredProducts = products
-   }
+   } */
   
-    
+    /*
     const getProducts = (products) => { 
         return new Promise ((resolve, reject) => {
            resolve(products) 
+
           })
         .then(
           setProductData(products)
         ) 
-    }
+    } */
 
     const showFilteredProducts = (productData) => {
       return (
@@ -34,16 +37,32 @@ export const ItemList = (props) => {
                     category={product.category} 
                     title={product.title} 
                     price={product.price} 
-                    pictureURL={product.image.pictureURL} />
+                    pictureURL={product.pictureURL} />
          )) : (<p>Cargando productos</p>)
       )
   }
   
     useEffect(
       () => {
-      setTimeout (() => {
+      /* setTimeout (() => {
           getProducts(filteredProducts)
-        },1000)
+        },1000) */
+
+        /* Firebase */
+        const db = getFirestore();
+        const itemCollection = db.collection("items");
+        let filteredProducts = itemCollection.where('category','==',categoryId)
+        filteredProducts.get().then((querySnapshot) => {
+          if(querySnapshot.size === 0) {
+            /* show all products if there's no category in params -at home */
+            filteredProducts = itemCollection;
+          }
+          setProductData(querySnapshot.docs.map((doc) => {id: doc.id, ...doc.data()}))
+          
+          console.log(productData)
+        }).catch((error) => {
+          console.error("Firestore error", error)
+        })
   }, [categoryId])
 
     return (
