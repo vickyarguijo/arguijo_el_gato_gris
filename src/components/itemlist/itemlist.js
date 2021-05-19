@@ -33,7 +33,7 @@ export const ItemList = (props) => {
     const showFilteredProducts = (productData) => {
       return (
         productData.length >0 ? (productData.map((product) => 
-              <Item id={product.id} 
+              <Item 
                     category={product.category} 
                     title={product.title} 
                     price={product.price} 
@@ -51,13 +51,16 @@ export const ItemList = (props) => {
         /* Firebase */
         const db = getFirestore();
         const itemCollection = db.collection("items");
-        let filteredProducts = itemCollection.where('category','==',categoryId)
+        let filteredProducts = [''];
+        if (categoryId){
+          filteredProducts = itemCollection.where('category','==',categoryId) }
+        else {
+          /* show all products with no category at home page */
+          filteredProducts = itemCollection;
+        }
         filteredProducts.get().then((querySnapshot) => {
-          if(querySnapshot.size === 0) {
-            /* show all products if there's no category in params -at home */
-            filteredProducts = itemCollection;
-          }
-          setProductData(querySnapshot.docs.map((doc) => {id: doc.id, ...doc.data()}))
+          
+          setProductData(querySnapshot.docs.map((doc) => doc.data()))
           
           console.log(productData)
         }).catch((error) => {
