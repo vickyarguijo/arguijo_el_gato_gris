@@ -2,7 +2,7 @@ import './itemdetailcontainer.css'
 import React, {Component, useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom'
 import {ItemDetail} from '../itemdetail/itemdetail'
-import products from '../../products'
+import {getFirestore} from '../../firebase/index'
 
 
 export const ItemDetailContainer = (props) => {
@@ -12,8 +12,8 @@ export const ItemDetailContainer = (props) => {
         
     const [itemToShow, setItemToShow] = useState('');
     
-    let foundItem = ''
-
+    
+    /*
     const getItems = (products) => {
       return new Promise((res, rej) => {
         res(products)
@@ -27,15 +27,23 @@ export const ItemDetailContainer = (props) => {
        .then( 
           setItemToShow(foundItem)
        )
-    }
+    } */
     useEffect(
       () => {
-      setTimeout (() => {
-
-        getItems(products)
-       
-      },1000)
-  }, [id])
+      /* Firebase */
+      const db = getFirestore();
+      const itemCollection = db.collection("items");
+      let foundItem = itemCollection.doc(id)
+     
+      foundItem.get().then((doc) => {
+        
+        setItemToShow({id: doc.id, ...doc.data()})
+        
+        
+      }).catch((error) => {
+        console.error("Firestore error", error)
+      })
+}, [id])
 
     
     console.log(`este es ${itemToShow.title}`)
@@ -49,7 +57,7 @@ export const ItemDetailContainer = (props) => {
                               title={itemToShow.title} 
                               description={itemToShow.description}
                               price={itemToShow.price}
-                              pictureURL={itemToShow.image.pictureURL}
+                              pictureURL={itemToShow.pictureURL}
                               
                                />
                                ) : (<p>Cargando detalles del producto</p>)}

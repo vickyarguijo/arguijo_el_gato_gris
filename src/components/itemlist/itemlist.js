@@ -33,7 +33,7 @@ export const ItemList = (props) => {
     const showFilteredProducts = (productData) => {
       return (
         productData.length >0 ? (productData.map((product) => 
-              <Item 
+              <Item id={product.id}
                     category={product.category} 
                     title={product.title} 
                     price={product.price} 
@@ -60,14 +60,14 @@ export const ItemList = (props) => {
         }
         filteredProducts.get().then((querySnapshot) => {
           
-          setProductData(querySnapshot.docs.map((doc) => doc.data()))
+          setProductData(querySnapshot.docs.map(doc => ({id:doc.id, ...doc.data()})))
           
-          console.log(productData)
+          
         }).catch((error) => {
           console.error("Firestore error", error)
         })
   }, [categoryId])
-
+  console.log(productData)
     return (
         <div className="itemList">
            
