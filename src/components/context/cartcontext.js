@@ -9,55 +9,37 @@ export const CartProvider = ({children}) => {
 
 
     const addItem = (id, quantity, title, pictureURL, price) => {
-       /* Check if the item is in cart */
+       /* Check if the item is present in cart */
        let isPresent = false;
        let newCart = [...cart]
        if (cart.some(product => product.id === id)) {
         isPresent = true;
        }
        if (isPresent) {
-         for(let i = 0; i < newCart.length; i ++) {
-            if(newCart[i][id] === id) {
-             newCart[i][quantity] += quantity
-            }}
-        setCart(newCart)
-        console.log(newCart)
+
+        newCart[newCart.findIndex(prod => prod.id === id)].quantity += quantity; 
+            setCart(newCart);
+            return;
+
        } else {
-        setCart([...cart, {id, quantity, title, pictureURL, price}])
+        setCart([...cart, {id, quantity, title, pictureURL, price}]) //ads new item if not present
        }
     }
 
     console.log(cart)
 
     const removeItem = (itemId) => {
-        const newCart = cart.filter((item) => item.id !== itemId)
-        setCart(newCart)
-    }
-
-    const isInCart = (id, quantity, cart) => {
-       let isPresent = false;
-
-       if (cart.includes(id)) {
-        isPresent = true; 
-       }
-       if (isPresent) {
-         for(let i = 0; i < cart.length; i ++) {
-            if(cart[i][id] === id) {
-            cart[i][quantity] += quantity
-            }} 
-       }
-
-        /* let foundId = id;
-        
-       if (cart.some(item => item.id === id)) {
-            cart[id=id].quantity += quantity
-          } 
-        if (cart.some(item => item.id === id)) {
-            for(let i = 0; i < cart.length; i ++) {
-                if(cart[i][id] === foundId) {
-                cart[i][quantity] += quantity
-                }}
-        } */
+        let newCart2 = [...cart]
+        if(newCart2[newCart2.findIndex(prod => prod.id === itemId)].quantity > 1){
+        //cart.filter((item) => item.id !== itemId)
+        newCart2[newCart2.findIndex(prod => prod.id === itemId)].quantity --
+        setCart(newCart2)
+        return;
+    }else {
+        newCart2 = newCart2.filter((item) => item.id !== itemId)
+        setCart(newCart2)
+        return;
+        }
     }
 
     const clearCart = () => {
@@ -76,12 +58,12 @@ export const CartProvider = ({children}) => {
 
     useEffect( () => {
         cartTotalNumber(cart)
-        //setCartQuantity(cartTotalNumber)
+       
     }, [cart]
     )
 
     return (
-        <CartContext.Provider value={{cart,cartQuantity,addItem, removeItem, isInCart, clearCart}}>
+        <CartContext.Provider value={{cart,cartQuantity,addItem, removeItem, clearCart}}>
             {children}
         </CartContext.Provider>
     )
