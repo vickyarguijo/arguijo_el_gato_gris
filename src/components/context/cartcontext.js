@@ -6,7 +6,7 @@ export const CartProvider = ({children}) => {
 
     const [cart, setCart] = useState([])
     const [cartQuantity, setCartQuantity] = useState(0)
-
+    const [cartTotalPrice, setCartTotalPrice] = useState(0)
 
     const addItem = (id, quantity, title, pictureURL, price) => {
        /* Check if the item is present in cart */
@@ -56,14 +56,23 @@ export const CartProvider = ({children}) => {
         setCartQuantity(totalProducts)
     }
 
+    const getCartTotalPrice = (cart) => {
+        /* adds all cart.price to get total price */
+        var totalPrice = 0
+        for(let x in cart){
+            totalPrice += (cart[x].price*cart[x].quantity); //adds all prices in cart
+          }
+        setCartTotalPrice(totalPrice)
+    }
+
     useEffect( () => {
         cartTotalNumber(cart)
-       
+        getCartTotalPrice(cart)
     }, [cart]
     )
 
     return (
-        <CartContext.Provider value={{cart,cartQuantity,addItem, removeItem, clearCart}}>
+        <CartContext.Provider value={{cart,cartQuantity, cartTotalPrice,addItem, removeItem, clearCart}}>
             {children}
         </CartContext.Provider>
     )

@@ -44,10 +44,7 @@ export const ItemList = (props) => {
   
     useEffect(
       () => {
-      /* setTimeout (() => {
-          getProducts(filteredProducts)
-        },1000) */
-
+      
         /* Firebase */
         const db = getFirestore();
         const itemCollection = db.collection("items");
