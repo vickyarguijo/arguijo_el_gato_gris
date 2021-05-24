@@ -1,4 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
+import firebase from 'firebase'
+import 'firebase/firestore'
+import {getFirestore} from '../../firebase/index'
 
 export const CartContext = createContext();
 
@@ -7,6 +10,7 @@ export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
     const [cartQuantity, setCartQuantity] = useState(0)
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
+    const [orderId, setOrderId] = useState(0)
 
     const addItem = (id, quantity, title, pictureURL, price) => {
        /* Check if the item is present in cart */
@@ -65,6 +69,25 @@ export const CartProvider = ({children}) => {
         setCartTotalPrice(totalPrice)
     }
 
+    const createOrder = (buyer, cart) => {
+        const {name, phone, email} = buyer
+        const db = getFirestore()
+        const orders = db.collection("orders")
+        const newOrder = {buyer: {name, phone, email}, items: cart, total: cartTotalPrice, date: firebase.firestore.Timestamp.fromDate(new Date())}
+
+        orders.add(newOrder).then(({id}) =>{setOrderId(id)}).catch(error => (error))
+        console.log(orderId)
+    }
+
+    const updateStock = (cart) => {
+        const db = getFirestore()
+        const batch = db.batch()
+        let newStock = 
+        cart.map(doc =>(batch.update(doc, {stock: newStock})))
+
+        cart.commit().then(r => r)
+    }
+
     useEffect( () => {
         cartTotalNumber(cart)
         getCartTotalPrice(cart)
@@ -72,7 +95,7 @@ export const CartProvider = ({children}) => {
     )
 
     return (
-        <CartContext.Provider value={{cart,cartQuantity, cartTotalPrice,addItem, removeItem, clearCart}}>
+        <CartContext.Provider value={{cart,cartQuantity, cartTotalPrice,addItem, removeItem, clearCart, createOrder}}>
             {children}
         </CartContext.Provider>
     )
