@@ -5,9 +5,9 @@ import {ItemCount} from '../itemcount/itemcount'
 import {useContext} from 'react'
 import {CartContext} from '../context/cartcontext'
 
-export const ItemDetail = ({id, category, title, description, price, pictureURL}) => {
+export const ItemDetail = ({id, category, title, description, price, pictureURL, stock}) => {
     
-    const [item, setItem] = useState({id, category, title, description, price, pictureURL});
+    const [item, setItem] = useState({id, category, title, description, price, pictureURL, stock});
     
     /* Saves onAdd quantity from itemCount */
     const [quantityToAdd, setQuantityToAdd] = useState(0)
@@ -35,7 +35,7 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL}
                 <p className="itemDetailId">ID del producto: {id}</p>
 
                 {(quantityToAdd == 0) ? (
-                <ItemCount stock="5" initial={1} onAdd={handleAdd} id={id} title={title} pictureURL={pictureURL} price={price} />
+                <ItemCount stock={stock} initial={1} onAdd={handleAdd} id={id} title={title} pictureURL={pictureURL} price={price} />
                 ) : (<Link exact to={'/cart'}><button className="">Finalizar Compra</button></Link>)}
                 
 
@@ -45,13 +45,5 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL}
         </div>
         
     ) 
-    return (
-        <div className="itemDetail">
-           
-             <p>ID del producto: {id}</p>
-             
-            
-        </div>
-        
-    )
+    
 }

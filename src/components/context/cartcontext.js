@@ -35,7 +35,7 @@ export const CartProvider = ({children}) => {
     const removeItem = (itemId) => {
         let newCart2 = [...cart]
         if(newCart2[newCart2.findIndex(prod => prod.id === itemId)].quantity > 1){
-        //cart.filter((item) => item.id !== itemId)
+        
         newCart2[newCart2.findIndex(prod => prod.id === itemId)].quantity --
         setCart(newCart2)
         return;
@@ -77,15 +77,23 @@ export const CartProvider = ({children}) => {
 
         orders.add(newOrder).then(({id}) =>{setOrderId(id)}).catch(error => (error))
         console.log(orderId)
+
+        updateStock();
+        
     }
 
-    const updateStock = (cart) => {
+    const updateStock = async () => {
         const db = getFirestore()
         const batch = db.batch()
-        let newStock = 
-        cart.map(doc =>(batch.update(doc, {stock: newStock})))
+        const outOfStock = []
 
-        cart.commit().then(r => r)
+        cart.forEach((item) => {
+            const itemRef = db.collection("items").doc(item.id)
+            batch.update(itemRef, {stock: item.stock - item.quantity })
+        })
+        
+        batch.commit()
+        
     }
 
     useEffect( () => {

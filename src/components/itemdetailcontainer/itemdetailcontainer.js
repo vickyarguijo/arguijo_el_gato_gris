@@ -58,7 +58,7 @@ export const ItemDetailContainer = (props) => {
                               description={itemToShow.description}
                               price={itemToShow.price}
                               pictureURL={itemToShow.pictureURL}
-                              
+                              stock={itemToShow.stock}
                                />
                                ) : (<p>Cargando detalles del producto</p>)}
                     </div>
