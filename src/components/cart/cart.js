@@ -1,11 +1,12 @@
 import './cart.css'
 import {useContext, useState} from 'react'
 import {CartContext} from '../context/cartcontext'
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {Fragment} from 'react'
 
 export const Cart = () => {
     const {cart} = useContext(CartContext);
+    const {orderId} = useContext(CartContext);
     const {cartTotalPrice} = useContext(CartContext);
     const {removeItem} = useContext(CartContext);
     const {clearCart} = useContext(CartContext);
@@ -64,7 +65,9 @@ export const Cart = () => {
                         {error && <span className='errorMessage'>*Debes completar este campo para finalizar la orden de compra. </span>}
                         <input type="text" name="email" value={email} onChange={handleChange} onBlur={handleBlur} placeholder="example@example.com" />
 
-                        <button className='cartFinalizarCompra' onClick={()=> createOrder(inputValues, cart)} type="submit" disabled={[name, phone, email].includes('')}>Comprar</button>
+                        <Link to='/confirmation'>
+                            <button className='cartFinalizarCompra' onClick={()=> createOrder(inputValues, cart)} type="submit" disabled={[name, phone, email].includes('')}>Comprar</button>
+                        </Link>
                     </form>
                 </Fragment>
             }

@@ -4,6 +4,7 @@ import {Navbar} from './components/navbar/navbar'
 import {ItemListContainer} from './components/itemlistcontainer/itemlistcontainer'
 import {ItemDetailContainer} from './components/itemdetailcontainer/itemdetailcontainer'
 import {Cart} from './components/cart/cart'
+import {Confirmation} from './components/confirmation/confirmation'
 import {CartProvider} from './components/context/cartcontext'
 import './App.css';
 
@@ -35,6 +36,9 @@ function App() {
               </Route>
               <Route exact path="/:cart">
                 <Cart />
+              </Route>
+              <Route path="/confirmation">
+                <Confirmation />
               </Route>
 
           </main>
