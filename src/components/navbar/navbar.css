@@ -1,33 +1,44 @@
 .header {
     display: flex;
-    width: 100%;
+    width: 100vw;
     padding: 20px;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    box-shadow: 0 4px 2px -2px #999;
+    margin: 0 0 10px; /* to fix bottom shadow overlap */
     
 }
 .logoContainer {
     text-decoration: none;
-    margin: 0;
+    width: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }
 .logo {
-    width: 100px;
+    width: 60px;
     height: auto;
+    
 }
 .brandName {
-    margin: 0;
-    text-decoration: none;
     color: #038181;
     font-weight: 600;
     font-family: 'Quicksand', Arial, Helvetica, sans-serif;
     font-size: 1rem;
-    line-height: 1.5rem;
+    line-height: 1.3rem;
+    text-decoration: none;
+    text-align: center;
+    margin: 0;
 }
 .nav {
     display: flex;
+    flex-flow: column nowrap;
     justify-content: space-between;
     font-family: 'Quicksand', Arial, Helvetica, sans-serif;
     text-decoration: none;
+    padding: 0;
+    margin: 0 20px;
 }
 
 .nav_inactive {
@@ -42,9 +53,21 @@
 }
 .navItem {
     list-style-type: none;
-    margin: 0 20px;
+    margin: 10px 0px;
     text-decoration: none;
+    text-align: center;
     font-size: 0.9rem;
     line-height: 1rem;
     font-weight: 500;
+}
+/* Medium size and desktop */
+@media only screen and (min-width: 480px) {
+    .nav {
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+    .navItem {
+        margin: 0 20px;
+    }
+    
 }

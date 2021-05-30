@@ -10,12 +10,12 @@ export const Item = ({id, category, title, price, pictureURL, stock}) => {
     return (
         <div className="item">
            
-             <h4>{title}</h4>
              <img src={pictureURL} />
-             <p>Precio: ${price}</p>
-             <p>ID del producto: {id}</p>
-             <Link to={`/itemdetailcontainer/${id}`}><button>Ver detalles</button></Link>
-            
+             <div className="item_texts_container">
+                <h4 className="item_title">{title}</h4>
+                <p className="item_price">Precio: ${price}</p>
+                <Link to={`/itemdetailcontainer/${id}`}><button className="item_button">Ver detalles</button></Link>
+             </div>
         </div>
         
     )

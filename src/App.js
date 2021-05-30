@@ -21,7 +21,7 @@ function App() {
       <CartProvider>
         <Navbar />
         <Switch>
-          <main className='app'>
+          
               <Route exact path="/">
                 <ItemListContainer user={userData} />
               </Route>
@@ -41,7 +41,7 @@ function App() {
                 <Confirmation />
               </Route>
 
-          </main>
+          
         </Switch>
       </CartProvider>
     </BrowserRouter>

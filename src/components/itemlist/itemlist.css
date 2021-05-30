@@ -1,6 +1,12 @@
 .itemList{
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
+    padding: 0 20px;
+}
+@media only screen and (min-width: 480px) {
+    .itemList{
+        flex-flow: row wrap;
+    }
 }
