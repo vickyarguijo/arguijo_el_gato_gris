@@ -70,10 +70,10 @@ export const CartProvider = ({children}) => {
     }
 
     const createOrder = (buyer, cart) => {
-        const {name, phone, email} = buyer
+        const {name, surname, phone, email} = buyer
         const db = getFirestore()
         const orders = db.collection("orders")
-        const newOrder = {buyer: {name, phone, email}, items: cart, total: cartTotalPrice, date: firebase.firestore.Timestamp.fromDate(new Date())}
+        const newOrder = {buyer: {name, surname, phone, email}, items: cart, total: cartTotalPrice, date: firebase.firestore.Timestamp.fromDate(new Date())}
 
         orders.add(newOrder).then(({id}) =>{setOrderId(id)}).catch(error => (error))
         console.log(orderId)

@@ -18,13 +18,24 @@
     transition: 0.3s;
     cursor: pointer;
 }
+.button_primary {
+    width: 200px;
+    height: 40px;
+    font-size: 14px;
+}
 .button_secondary {
     width: 160px;
     height: 30px;
     font-size: 12px;
 }
-.button_primary {
-    width: 200px;
-    height: 40px;
-    font-size: 14px;
+.button_terciary {
+    width: 130px;
+    height: 30px;
+    font-size: 12px;
+}
+.button_gray {
+    background: #999;
+}
+.button_gray:hover {
+    background: #bbbaba;
 }
