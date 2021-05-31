@@ -1,13 +1,16 @@
 .itemCount {
-    width: 202px;
-    margin: 20px 0 0;
-    display: block;
+    width: auto;
+    margin: 0;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
 }
 .itemQuantityContainer {
     width: 200px;
     height: 40px;
-    margin: 0 auto;
-    border: 1px solid #666;
+    margin: 0 0 20px;
+    border: 1px solid #999;
+    background: #ebebeb;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,11 +24,15 @@
     line-height: 1rem;
     font-weight: bold;
     text-align: center;
-    color: #7402a8;
+    color: #038181;
     margin: 0 10px;
-    border: 1px solid #7402a8;
+    border: 1px solid #038181;
     border-radius: 20px;
     cursor: pointer;
+}
+.operator:hover {
+    transition: 0.3s;
+    transform: scale(1.1);
 }
 .addToCartBtn {
     width: 200px;

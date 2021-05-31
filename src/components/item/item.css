@@ -30,21 +30,8 @@
     font-size: 0.9rem;
     padding: 0 0 10px;
 }
-.item_button {
-    width: 120px;
-    height: 30px;
-    border-radius: 20px;
-    background: #038181;
-    border: none;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 400;
-}
-.item_button:hover {
-    background: #09ada5;
-    transition: 0.3s;
-    cursor: pointer;
-}
+
+
 /* Medium size and desktop */
 @media only screen and (min-width: 480px) {
     .item {

@@ -3,3 +3,28 @@
     margin: 0;
     padding: 0;
 }
+.button {
+    border-radius: 20px;
+    background: #038181;
+    border: none;
+    color: #fff;
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.button:hover {
+    background: #09ada5;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.button_secondary {
+    width: 160px;
+    height: 30px;
+    font-size: 12px;
+}
+.button_primary {
+    width: 200px;
+    height: 40px;
+    font-size: 14px;
+}

@@ -1,13 +1,15 @@
 .itemDetail {
     display: flex;
-    padding: 40px;
+    flex-flow: column nowrap;
+    padding: 40px 20px;
 }
+
 .itemDetailImage {
-    flex: 1 1 50%;
+    margin: 0 0 40px;
     
-}
+} 
 .itemDetailImage img {
-    width: 80%;
+    width: 100%;
     height: auto;
     border-radius: 15px;
     
@@ -24,20 +26,42 @@
     line-height: 2.5rem;
     color: #333;
     font-weight: bold;
+    padding: 0 0 20px;
 }
 .itemDetailPrice {
     font-size: 1.4rem;
     line-height: 2rem;
     color: #038181;
     font-weight: bold;
+    padding: 0 0 20px;
 }
 .itemDetailDescription {
+    font-size: 1.1rem;
+    line-height: 1.7rem;
+    color: #333;
+    font-weight: 600;
+    padding: 0 0 10px;
+}
+.itemDetailDescription_text {
     font-size: 1rem;
     line-height: 1.7rem;
     color: #333;
+    font-weight: 400;
+    padding: 0 0 10px;
 }
 .itemDetailId {
     font-size: 0.7rem;
     line-height: 1rem;
     color: #666;
+    padding: 0 0 40px;
+}
+@media only screen and (min-width: 480px) {
+    .itemDetail {
+        flex-flow: row nowrap;
+        padding: 40px;
+    }
+    .itemDetailImage {
+        flex: 1 1 50%;
+        
+    } 
 }

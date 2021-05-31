@@ -31,12 +31,12 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL,
              <div className="itemDetailInfo">
                 <h2>{title}</h2>
                 <p className="itemDetailPrice">Precio: ${price}</p>
-                <p className="itemDetailDescription">Descripción: <br />{description}</p> 
+                <p className="itemDetailDescription">Descripción: </p><p className="itemDetailDescription_text">{description}</p> 
                 <p className="itemDetailId">ID del producto: {id}</p>
 
                 {(quantityToAdd == 0) ? (
                 <ItemCount stock={stock} initial={1} onAdd={handleAdd} id={id} title={title} pictureURL={pictureURL} price={price} />
-                ) : (<Link exact to={'/cart'}><button className="">Finalizar Compra</button></Link>)}
+                ) : (<Link exact to={'/cart'}><button className="button button_primary">Finalizar Compra</button></Link>)}
                 
 
                
