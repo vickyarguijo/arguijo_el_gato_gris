@@ -84,7 +84,7 @@ export const Cart = () => {
                         </div>
                         <div className='form_button_container'>
                             <Link to='/confirmation'>
-                                <button className='button button_primary' onClick={()=> {createOrder(inputValues); updateStock()}} type="submit" disabled={[name, surname, phone, email].includes('')}>Comprar</button>
+                                <button className='button button_primary' onClick={()=> createOrder(inputValues)} type="submit" disabled={[name, surname, phone, email].includes('')}>Comprar</button>
                             </Link>
                         </div>
                     </form>

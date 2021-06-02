@@ -55,7 +55,7 @@ export const CartProvider = ({children}) => {
         for(let x in cart){
             totalProducts += cart[x].quantity; //adds all quantity in cart
           }
-          console.log(totalProducts)
+        
         setCartQuantity(totalProducts)
     }
 
@@ -78,8 +78,7 @@ export const CartProvider = ({children}) => {
 
         orders.add(newOrder).then(({id}) =>{setOrderId(id)}).catch(error => (error))
         
-        console.log(orderId)
-
+        updateStock()
        
     }
 
@@ -104,7 +103,7 @@ export const CartProvider = ({children}) => {
     )
 
     return (
-        <CartContext.Provider value={{cart,cartQuantity,orderId, cartTotalPrice, addItem, removeItem, clearCart, createOrder, updateStock}}>
+        <CartContext.Provider value={{cart,cartQuantity,orderId, cartTotalPrice, addItem, removeItem, clearCart, createOrder}}>
             {children}
         </CartContext.Provider>
     )
