@@ -24,7 +24,7 @@ export const ItemCount = ({id, stock, initial, onAdd, title, pictureURL, price})
                 <div className="quantity">{quantity}</div>
                 <div className="operator" onClick={ () => add(quantity, stock)}>+</div>
             </div>
-            <button className="button button_primary" onClick={ () => onAdd(id, quantity, title, pictureURL, price)}>Agregar al Carrito</button>
+            <button className="button button_primary" onClick={ () => onAdd(id, quantity, title, pictureURL, price, stock)}>Agregar al Carrito</button>
         </div>
         
     )

@@ -12,7 +12,7 @@ export const CartProvider = ({children}) => {
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
     const [orderId, setOrderId] = useState(0)
 
-    const addItem = (id, quantity, title, pictureURL, price) => {
+    const addItem = (id, quantity, title, pictureURL, price, stock) => {
        /* Check if the item is present in cart */
        let isPresent = false;
        let newCart = [...cart]
@@ -26,11 +26,10 @@ export const CartProvider = ({children}) => {
             return;
 
        } else {
-        setCart([...cart, {id, quantity, title, pictureURL, price}]) //ads new item if not present
+        setCart([...cart, {id, quantity, title, pictureURL, price, stock}]) //ads new item if not present
        }
     }
 
-    console.log(cart)
 
     const removeItem = (itemId) => {
         let newCart2 = [...cart]
@@ -69,31 +68,33 @@ export const CartProvider = ({children}) => {
         setCartTotalPrice(totalPrice)
     }
 
-    const createOrder = (buyer, cart) => {
+    const createOrder = async (buyer) => {
         const {name, surname, phone, email} = buyer
+        const cartInOrder = cart.map(prod => ({id: prod.id, title: prod.title, quantity: prod.quantity}))
+
         const db = getFirestore()
         const orders = db.collection("orders")
-        const newOrder = {buyer: {name, surname, phone, email}, items: cart, total: cartTotalPrice, date: firebase.firestore.Timestamp.fromDate(new Date())}
+        const newOrder = {buyer: {name, surname, phone, email}, items: cartInOrder, total: cartTotalPrice, date: firebase.firestore.Timestamp.fromDate(new Date())}
 
         orders.add(newOrder).then(({id}) =>{setOrderId(id)}).catch(error => (error))
+        
         console.log(orderId)
 
-        updateStock();
-        
+       
     }
 
     const updateStock = async () => {
         const db = getFirestore()
         const batch = db.batch()
-        const outOfStock = []
-
+        
         cart.forEach((item) => {
             const itemRef = db.collection("items").doc(item.id)
-            batch.update(itemRef, {stock: item.stock - item.quantity })
+            batch.update(itemRef, { stock: item.stock - item.quantity}) 
         })
-        
+       
         batch.commit()
         
+        setCart([])
     }
 
     useEffect( () => {
@@ -103,7 +104,7 @@ export const CartProvider = ({children}) => {
     )
 
     return (
-        <CartContext.Provider value={{cart,cartQuantity,orderId, cartTotalPrice,addItem, removeItem, clearCart, createOrder}}>
+        <CartContext.Provider value={{cart,cartQuantity,orderId, cartTotalPrice, addItem, removeItem, clearCart, createOrder, updateStock}}>
             {children}
         </CartContext.Provider>
     )

@@ -1,16 +1,16 @@
 import './cart.css'
 import {useContext, useState} from 'react'
 import {CartContext} from '../context/cartcontext'
-import {Link, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Fragment} from 'react'
 
 export const Cart = () => {
     const {cart} = useContext(CartContext);
-    const {orderId} = useContext(CartContext);
     const {cartTotalPrice} = useContext(CartContext);
     const {removeItem} = useContext(CartContext);
     const {clearCart} = useContext(CartContext);
-    const {createOrder} = useContext(CartContext);
+    const {createOrder, updateStock} = useContext(CartContext);
+    
     const [inputValues, setInputValues] = useState({
         name:'',
         surname:'',
@@ -84,7 +84,7 @@ export const Cart = () => {
                         </div>
                         <div className='form_button_container'>
                             <Link to='/confirmation'>
-                                <button className='button button_primary' onClick={()=> createOrder(inputValues, cart)} type="submit" disabled={[name, surname, phone, email].includes('')}>Comprar</button>
+                                <button className='button button_primary' onClick={()=> {createOrder(inputValues); updateStock()}} type="submit" disabled={[name, surname, phone, email].includes('')}>Comprar</button>
                             </Link>
                         </div>
                     </form>

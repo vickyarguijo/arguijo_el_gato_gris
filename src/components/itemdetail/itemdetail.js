@@ -16,10 +16,10 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL,
     const {addItem} = useContext(CartContext)
 
     /* Item Count Add Handler */
-    const handleAdd = (id, quantity, title, pictureURL, price) => {
+    const handleAdd = (id, quantity, title, pictureURL, price, stock) => {
         setQuantityToAdd(quantity)
         /* Adds item to cart using context addItem function */
-        addItem(id, quantity, title, pictureURL, price)
+        addItem(id, quantity, title, pictureURL, price, stock)
         }
 
    return (
