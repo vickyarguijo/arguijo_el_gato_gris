@@ -1,14 +1,14 @@
 import firebase from 'firebase'
 import 'firebase/firestore'
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDxltVelnVcjUtPE9PjYMdHFmX3tGCUJWo",
-    authDomain: "el-gato-gris.firebaseapp.com",
-    projectId: "el-gato-gris",
-    storageBucket: "el-gato-gris.appspot.com",
-    messagingSenderId: "664694783880",
-    appId: "1:664694783880:web:bad6418b1b05ef0769843d"
-}
+const firebaseConfig = ({
+    apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_SENDERID,
+    appId: process.env.REACT_APP_FIREBASE_APPID
+})
 
 const app = firebase.initializeApp(firebaseConfig);
 
