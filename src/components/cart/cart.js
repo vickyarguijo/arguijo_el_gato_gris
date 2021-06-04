@@ -14,7 +14,7 @@ export const Cart = () => {
     const [inputValues, setInputValues] = useState({
         name:'',
         surname:'',
-        phone:0,
+        phone:'',
         email:''
       });
     const { name, surname, phone, email } = inputValues;
@@ -75,7 +75,7 @@ export const Cart = () => {
                             <div className='form_container2'>
                                 <label>Teléfono:</label>
                                 {error && <span className='errorMessage'>*Debes completar este campo para finalizar la orden de compra. </span>}
-                                <input type="tel" name="phone" value={phone} onChange={handleChange} onBlur={handleBlur} placeholder="XXX-XXXX" />
+                                <input type="tel" name="phone" value={phone} onChange={handleChange} onBlur={handleBlur} placeholder="(+5411)555-5555" />
 
                                 <label>E-mail:</label>
                                 {error && <span className='errorMessage'>*Debes completar este campo para finalizar la orden de compra. </span>}
