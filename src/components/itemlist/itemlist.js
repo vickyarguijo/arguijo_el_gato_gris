@@ -13,8 +13,9 @@ export const ItemList = (props) => {
 
     const showFilteredProducts = (productData) => {
       return (
-        productData.length >0 ? (productData.map((product) => 
-              <Item id={product.id}
+        productData.length >0 ? (productData.map((product, index) => 
+              <Item key={index}
+                    id={product.id}
                     category={product.category} 
                     title={product.title} 
                     price={product.price} 
