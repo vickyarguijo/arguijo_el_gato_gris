@@ -3,6 +3,9 @@
     margin: 0;
     padding: 0;
 }
+.wrapper {
+    min-height: 60vh;
+}
 .button {
     border-radius: 20px;
     background: #038181;

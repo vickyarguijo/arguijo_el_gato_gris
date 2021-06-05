@@ -1,6 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import {Navbar} from './components/navbar/navbar'
+import {Footer} from './components/footer/footer'
 import {ItemListContainer} from './components/itemlistcontainer/itemlistcontainer'
 import {ItemDetailContainer} from './components/itemdetailcontainer/itemdetailcontainer'
 import {Cart} from './components/cart/cart'
@@ -19,8 +20,9 @@ function App() {
   return (
     <BrowserRouter>
       <CartProvider>
-        <Navbar />
-        <Switch>
+        <div className="wrapper">
+          <Navbar />
+          <Switch>
           
               <Route exact path="/">
                 <ItemListContainer user={userData} />
@@ -40,9 +42,9 @@ function App() {
               <Route path="/confirmation">
                 <Confirmation />
               </Route>
-
-          
-        </Switch>
+          </Switch>
+        </div>
+        <Footer />
       </CartProvider>
     </BrowserRouter>
   );
