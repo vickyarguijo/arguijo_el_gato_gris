@@ -61,6 +61,14 @@
     color: #666;
     padding: 0 0 40px;
 }
+.itemDetail_out_of_stock {
+    color: #999;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin: 10px 0;
+    text-align: left;
+}
 @media only screen and (min-width: 480px) {
     .itemDetail {
         flex-flow: row nowrap;

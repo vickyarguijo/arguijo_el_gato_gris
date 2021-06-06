@@ -22,6 +22,17 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL,
         addItem(id, quantity, title, pictureURL, price, stock)
         }
 
+    /* Show itemCount or Out Of Stock message, or Finalize order button */
+    const showItemCountOrButton = () => {
+        if(quantityToAdd == 0 && stock > 0){
+            return <ItemCount stock={stock} initial={1} onAdd={handleAdd} id={id} title={title} pictureURL={pictureURL} price={price} />
+        } else if(quantityToAdd == 0 && stock == 0) {
+            return <p className="itemDetail_out_of_stock">SIN STOCK</p>
+        } else {
+            return <Link exact to={'/cart'}><button className="button button_primary">Finalizar Compra</button></Link>
+        }
+    }
+
    return (
         <div className="itemDetail">
             
@@ -33,12 +44,9 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL,
                 <p className="itemDetailPrice">Precio: ${price}</p>
                 <p className="itemDetailDescription">Descripción: </p><p className="itemDetailDescription_text">{description}</p> 
                 <p className="itemDetailId">ID del producto: {id}</p>
-                <p className="itemDetailStock">Stock disponible: {stock}</p>
+                {stock>0 && <p className="itemDetailStock">Stock disponible: {stock}</p>}
 
-                {(quantityToAdd == 0) ? (
-                <ItemCount stock={stock} initial={1} onAdd={handleAdd} id={id} title={title} pictureURL={pictureURL} price={price} />
-                ) : (<Link exact to={'/cart'}><button className="button button_primary">Finalizar Compra</button></Link>)}
-                
+                {showItemCountOrButton()}
 
                
              </div>
