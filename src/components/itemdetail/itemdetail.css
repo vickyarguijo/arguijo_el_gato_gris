@@ -51,7 +51,13 @@
 }
 .itemDetailId {
     font-size: 0.7rem;
-    line-height: 1rem;
+    line-height: 1.2rem;
+    color: #666;
+    padding: 0;
+}
+.itemDetailStock {
+    font-size: 0.9rem;
+    line-height: 1.4rem;
     color: #666;
     padding: 0 0 40px;
 }

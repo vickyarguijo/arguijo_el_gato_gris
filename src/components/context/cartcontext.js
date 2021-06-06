@@ -11,6 +11,7 @@ export const CartProvider = ({children}) => {
     const [cartQuantity, setCartQuantity] = useState(0)
     const [cartTotalPrice, setCartTotalPrice] = useState(0)
     const [orderId, setOrderId] = useState(0)
+    const [canBuy, setCanBuy] = useState(true)
 
     const addItem = (id, quantity, title, pictureURL, price, stock) => {
        /* Check if the item is present in cart */
@@ -69,17 +70,20 @@ export const CartProvider = ({children}) => {
     }
 
     const createOrder = async (buyer) => {
-        const {name, surname, phone, email} = buyer
-        const cartInOrder = cart.map(prod => ({id: prod.id, title: prod.title, quantity: prod.quantity}))
+        if(canBuy){
+            const {name, surname, phone, email} = buyer
+            const cartInOrder = cart.map(prod => ({id: prod.id, title: prod.title, quantity: prod.quantity}))
 
-        const db = getFirestore()
-        const orders = db.collection("orders")
-        const newOrder = {buyer: {name, surname, phone, email}, items: cartInOrder, total: cartTotalPrice, date: firebase.firestore.Timestamp.fromDate(new Date())}
+            const db = getFirestore()
+            const orders = db.collection("orders")
+            const newOrder = {buyer: {name, surname, phone, email}, items: cartInOrder, total: cartTotalPrice, date: firebase.firestore.Timestamp.fromDate(new Date())}
 
-        orders.add(newOrder).then(({id}) =>{setOrderId(id)}).catch(error => (error))
-        
-        updateStock()
-       
+            orders.add(newOrder).then(({id}) =>{setOrderId(id)}).catch(error => (error))
+            
+            updateStock()
+        } else {
+            alert("No contamos con stock para tu compra. Por favor revisá las cantidades a comprar.")
+        }
     }
 
     const updateStock = async () => {
@@ -96,6 +100,20 @@ export const CartProvider = ({children}) => {
         setCart([])
     }
 
+    const checkIfCanBuy = () => {
+        
+        cart.map(item => {if(item.quantity > item.stock){
+                alert(`Oops! No contamos con la cantidad que necesitás de ${item.title}. Stock disponible: ${item.stock}`)
+                
+                setCanBuy(false)
+
+            } else {
+                setCanBuy(true)
+                
+            }
+        })
+    }
+
     useEffect( () => {
         cartTotalNumber(cart)
         getCartTotalPrice(cart)
@@ -103,7 +121,7 @@ export const CartProvider = ({children}) => {
     )
 
     return (
-        <CartContext.Provider value={{cart,cartQuantity,orderId, cartTotalPrice, addItem, removeItem, clearCart, createOrder}}>
+        <CartContext.Provider value={{cart,cartQuantity, orderId, cartTotalPrice, addItem, removeItem, clearCart, createOrder, canBuy, checkIfCanBuy}}>
             {children}
         </CartContext.Provider>
     )

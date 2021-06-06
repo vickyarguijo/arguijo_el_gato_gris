@@ -33,6 +33,7 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL,
                 <p className="itemDetailPrice">Precio: ${price}</p>
                 <p className="itemDetailDescription">Descripción: </p><p className="itemDetailDescription_text">{description}</p> 
                 <p className="itemDetailId">ID del producto: {id}</p>
+                <p className="itemDetailStock">Stock disponible: {stock}</p>
 
                 {(quantityToAdd == 0) ? (
                 <ItemCount stock={stock} initial={1} onAdd={handleAdd} id={id} title={title} pictureURL={pictureURL} price={price} />
