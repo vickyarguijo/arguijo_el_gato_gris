@@ -1,11 +1,8 @@
 import './item.css'
-import React, {Component, useState} from 'react'
-import {Link, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
-export const Item = ({id, category, title, price, pictureURL, stock}) => {
-
-    const [item, setItem] = useState({id, category, title, price, pictureURL, stock});
+export const Item = ({id, title, price, pictureURL}) => {
 
     return (
         <div className="item">

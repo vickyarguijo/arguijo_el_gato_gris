@@ -47,7 +47,7 @@ export const ItemList = (props) => {
           console.error("Firestore error", error)
         })
   }, [categoryId])
-  console.log(productData)
+  
     return (
         <div className="itemList">
            

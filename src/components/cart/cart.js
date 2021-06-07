@@ -1,7 +1,7 @@
 import './cart.css'
 import {useContext, useState, useEffect} from 'react'
 import {CartContext} from '../context/cartcontext'
-import {Link, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Fragment} from 'react'
 import {ItemCount} from '../itemcount/itemcount'
 
@@ -35,7 +35,7 @@ export const Cart = () => {
     }, [cart]
     )
 
-    console.log(cart)
+    
     return (
         <div className='cart'>
            { cart.length > 0 ? (cart.map((cartItem, index) =>

@@ -78,4 +78,10 @@
         flex: 1 1 50%;
         
     } 
+    .itemDetailImage img {
+        width: 90%;
+        min-width: 200px;
+        height: auto;
+               
+    }
 }

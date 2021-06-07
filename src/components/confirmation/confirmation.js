@@ -5,7 +5,7 @@ import {CartContext} from '../context/cartcontext'
 
 export const Confirmation = () => {
 
-    const {orderId, cart} = useContext(CartContext);
+    const {orderId} = useContext(CartContext);
 
     return (
         <div className="confirmation">
