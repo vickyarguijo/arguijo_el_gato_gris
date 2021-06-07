@@ -17,8 +17,7 @@ export const Cart = () => {
         email:''
       });
     const { name, surname, phone, email } = inputValues;
-    const [error, setError] = useState(false);
-
+    
     const handleChange = ({target: { name, value }}) => setInputValues({ ...inputValues, [name]: value });
   
     const handleBlur = ({target: { name, value }}) => setInputValues({ ...inputValues, [name]: value.trim() }
@@ -28,21 +27,6 @@ export const Cart = () => {
         if(!((e.key == 1) || (e.key == 2) || (e.key == 3) || (e.key == 4) || (e.key == 5) || (e.key == 6) || (e.key == 7) || (e.key == 8) || (e.key == 9) || (e.key == 0) || (e.key == "ArrowLeft") || (e.key == "ArrowRight") || (e.key == "Backspace")) ) {
            e.preventDefault();
         }
-    }
-
-    function checkFormValues(e) {
-        
-         if([name, surname, phone, email].includes('')) {
-          setError(true);
-          return;
-        }
-        if(phone.length < 8){
-            setError(true);
-          return;
-        }
-        if(error){
-            e.preventDefault();
-        } 
     }
 
     useEffect( () => {
@@ -82,27 +66,27 @@ export const Cart = () => {
                         <div className="form_data_container">
                             <div className='form_container1'>
                                 <label>Nombre:</label>
-                                <input type="text" name="name" value={name} onChange={handleChange} onBlur={handleBlur, checkFormValues} placeholder="Nombre" />
-                                {error && <span className='errorMessage'>*Debes completar este campo para finalizar la orden de compra. </span>}
+                                <input type="text" name="name" value={name} onChange={handleChange} onBlur={handleBlur} placeholder="Nombre" />
+                                {(name.length < 3) && <span className='errorMessage'>*Debes completar este campo para finalizar la orden de compra. </span>}
 
                                 <label>Apellido:</label>
-                                <input type="text" name="surname" value={surname} onChange={handleChange} onBlur={handleBlur, checkFormValues} placeholder="Apellido" />
-                                {error && <span className='errorMessage'>*Debes completar este campo para finalizar la orden de compra. </span>}
+                                <input type="text" name="surname" value={surname} onChange={handleChange} onBlur={handleBlur} placeholder="Apellido" />
+                                {(surname.length < 3) && <span className='errorMessage'>*Debes completar este campo para finalizar la orden de compra. </span>}
                             </div>
                         
                             <div className='form_container2'>
                                 <label>Teléfono:</label>
-                                <input type="tel" name="phone" value={phone} onKeyDown={handleTel} onChange={handleChange} onBlur={handleBlur, checkFormValues} placeholder="(+5411)555-5555" />
-                                {error && <span className='errorMessage'>*Tu teléfono debe tener un mínimo de 8 dígitos, sin guiones, paréntesis ni espacios. </span>}
+                                <input type="tel" name="phone" value={phone} onKeyDown={handleTel} onChange={handleChange} onBlur={handleBlur} placeholder="(+5411)555-5555" />
+                                {((phone.length < 8)) && <span className='errorMessage'>*Tu teléfono debe tener un mínimo de 8 dígitos, sin guiones, paréntesis ni espacios. </span>}
 
                                 <label>E-mail:</label>
-                                <input type="email" name="email" value={email} onChange={handleChange} onBlur={handleBlur, checkFormValues} placeholder="example@example.com" />
-                                {error && <span className='errorMessage'>*Debes completar este campo para finalizar la orden de compra. </span>}
+                                <input type="email" name="email" value={email} onChange={handleChange} onBlur={handleBlur} placeholder="example@example.com" />
+                                {(email.length < 8) && <span className='errorMessage'>*Debes completar este campo para finalizar la orden de compra. </span>}
                             </div>
                         </div>
                         <div className='form_button_container'>
                             <Link to={canBuy ? '/confirmation' : '/cart'}>
-                                <button className='button button_primary' onClick={()=> createOrder(inputValues)} type="submit" disabled={[name, surname, phone, email].includes('') || phone.length < 8}>Comprar</button>
+                                <button className='button button_primary' onClick={()=> createOrder(inputValues)} type="submit" disabled={[name, surname, phone, email].includes('')}>Comprar</button>
                             </Link>
                         </div>
                     </form>
