@@ -1,20 +1,7 @@
 import './itemcount.css'
-import React, {Component, useState} from 'react';
 
-export const ItemCount = ({id, stock, initial, onAdd, title, pictureURL, price}) => {
-    const [quantity, setQuantity] = useState(initial);
-
-    function subtract(quantity) {
-        if(quantity > 1) {
-          setQuantity(quantity - 1)
-        }
-    }
-
-    function add(quantity, stock) {
-       if(quantity < stock) {
-            setQuantity(quantity + 1)
-        }
-    }
+export const ItemCount = ({id, stock, quantity, title, pictureURL, price, onAdd, add, subtract, itemCountIsChildOf}) => {
+    
 
 
     return (
@@ -24,8 +11,9 @@ export const ItemCount = ({id, stock, initial, onAdd, title, pictureURL, price})
                 <div className="quantity">{quantity}</div>
                 <div className="operator" onClick={ () => add(quantity, stock)}>+</div>
             </div>
-            <button className="button button_primary" onClick={ () => onAdd(id, quantity, title, pictureURL, price, stock)}>Agregar al Carrito</button>
-            
+            {itemCountIsChildOf == "itemDetail" &&
+                <button className="button button_primary margin_top_20" onClick={ () => onAdd(id, quantity, title, pictureURL, price, stock)}>Agregar al Carrito</button>
+            }
         </div>
         
     )

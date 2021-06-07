@@ -29,7 +29,11 @@ Vista de cada ítem de itemList.
 
 ### `ItemDetail`
 
-Vista del detalle de un ítem en particular. Contiene el componente itemCount para agregar al carrito, y redirige al carrito para finalizar la compra. 
+Vista del detalle de un ítem en particular. Contiene el componente itemCount para agregar al carrito, y redirige al carrito para finalizar la compra. Contiene la lógica para itemCount cuando es hijo de itemDetail -funciones para sumar y restar ítems, y botón para agregar al carrito-. Contiene a itemCount
+
+### `itemCount`
+
+Vista del contador para y restar productos al carrito. Botón de "Agregar al Carrito" con render condicional (solo si está en itemDetail). Su lógica de funcionamiento la recibe de itemDetail y de cart (que a su vez la recibe del context).
 
 ### `Context`
 
@@ -37,7 +41,7 @@ CartContext contiene la lógica para el funcionamiento del carrito, funciones pa
 
 ### `Cart`
 
-Vista del carrito con los productos agregados. Formulario para ingresar los datos del usuario. Funciones de validación del formulario. Redirige a la pantalla final de confirmación de compra. 
+Vista del carrito con los productos agregados. Formulario para ingresar los datos del usuario. Funciones de validación del formulario. Redirige a la pantalla final de confirmación de compra. Contiene a itemCount 
 
 ### `Confirmation`
 

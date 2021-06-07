@@ -1,11 +1,14 @@
 import './cart.css'
 import {useContext, useState, useEffect} from 'react'
 import {CartContext} from '../context/cartcontext'
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {Fragment} from 'react'
+import {ItemCount} from '../itemcount/itemcount'
 
 export const Cart = () => {
-    const {cart, cartTotalPrice,removeItem, clearCart, canBuy, checkIfCanBuy, createOrder} = useContext(CartContext);
+    const {cart, cartTotalPrice,removeItem, addOneItem, clearCart, canBuy, checkIfCanBuy, createOrder} = useContext(CartContext);
+
+    const [itemCountIsChildOf, setItemCountIsChildOf] = useState("cart");
    
     const [inputValues, setInputValues] = useState({
         name:'',
@@ -62,14 +65,16 @@ export const Cart = () => {
                         <p className='cartCantidad'>Cantidad: {cartItem.quantity}</p>
                         <p className='cartSubTotal'>Subtotal: ${cartItem.price*cartItem.quantity}</p>
                     </div>
-                    <button className='button button_terciary button_gray' onClick={() => removeItem(cartItem.id)}>Quitar</button>
+
+                    <ItemCount stock={cartItem.stock} subtract={() => removeItem(cartItem.id)} add={() => addOneItem(cartItem.id)} id={cartItem.id} quantity={cartItem.quantity} itemCountIsChildOf={itemCountIsChildOf} />
+
                 </div>
               
          )) : <p className='cartEmpty'>Tu carrito se encuentra vacío. Vuelve al <Link exact to="/"><strong>home</strong></Link> para agregar productos.</p> }
 
             {cart.length > 0 && 
                 <Fragment>
-                    <button className='button button_terciary button_gray button_clearCart' onClick={clearCart}>Vaciar Carrito</button>
+                    <button className='button button_secondary button_gray button_clearCart' onClick={clearCart}>Vaciar Carrito</button>
                     <p className='cartTotal'>Total de tu compra: ${cartTotalPrice}</p>
                     
                     <h3 className='cart_h3'>Completá tus datos para finalizar la compra:</h3>

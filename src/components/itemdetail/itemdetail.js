@@ -7,10 +7,12 @@ import {CartContext} from '../context/cartcontext'
 
 export const ItemDetail = ({id, category, title, description, price, pictureURL, stock}) => {
     
-    const [item, setItem] = useState({id, category, title, description, price, pictureURL, stock});
+    const [itemCountIsChildOf, setItemCountIsChildOf] = useState("itemDetail");
     
     /* Saves onAdd quantity from itemCount */
     const [quantityToAdd, setQuantityToAdd] = useState(0)
+    /* Saves temporary quantity from itemCount before adding to cart */
+    const [quantity, setQuantity] = useState(1);
 
     /* Adds item to cart using context addItem function */
     const {addItem} = useContext(CartContext)
@@ -22,10 +24,23 @@ export const ItemDetail = ({id, category, title, description, price, pictureURL,
         addItem(id, quantity, title, pictureURL, price, stock)
         }
 
+    /* Functions for + and - buttons in itemCount when in itemDetail (add or subtract one from quantity) */
+        function subtract(quantity) {
+            if(quantity > 1) {
+                setQuantity(quantity - 1)
+            }
+        }
+
+        function add(quantity, stock) {
+        if(quantity < stock) {
+            setQuantity(quantity + 1)
+            }
+        }
+
     /* Show itemCount or Out Of Stock message, or Finalize order button */
     const showItemCountOrButton = () => {
         if(quantityToAdd == 0 && stock > 0){
-            return <ItemCount stock={stock} initial={1} onAdd={handleAdd} id={id} title={title} pictureURL={pictureURL} price={price} />
+            return <ItemCount stock={stock} quantity={quantity} onAdd={handleAdd} subtract={subtract} add={add} id={id} title={title} pictureURL={pictureURL} price={price} itemCountIsChildOf={itemCountIsChildOf} />
         } else if(quantityToAdd == 0 && stock == 0) {
             return <p className="itemDetail_out_of_stock">SIN STOCK</p>
         } else {

@@ -8,26 +8,8 @@ import {getFirestore} from '../../firebase/index'
 export const ItemDetailContainer = (props) => {
     const {id} = useParams(); 
     
-    console.log (`param ${id}`)
-        
     const [itemToShow, setItemToShow] = useState('');
     
-    
-    /*
-    const getItems = (products) => {
-      return new Promise((res, rej) => {
-        res(products)
-          
-        })
-       .then ( 
-        foundItem = products.find((product) => product.id == id)
-         
-        )
-        
-       .then( 
-          setItemToShow(foundItem)
-       )
-    } */
     useEffect(
       () => {
       /* Firebase */

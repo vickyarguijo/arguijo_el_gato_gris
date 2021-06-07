@@ -31,6 +31,20 @@ export const CartProvider = ({children}) => {
        }
     }
 
+    /* Functions for itemCount when in cart (adds and removes one item) */
+    const addOneItem = (itemId) => {
+        let newCart2 = [...cart]
+        if(newCart2[newCart2.findIndex(prod => prod.id === itemId)].quantity > 1){
+        
+        newCart2[newCart2.findIndex(prod => prod.id === itemId)].quantity ++
+        setCart(newCart2)
+        return;
+    }else {
+        newCart2 = newCart2.filter((item) => item.id !== itemId)
+        setCart(newCart2)
+        return;
+        }
+    }
 
     const removeItem = (itemId) => {
         let newCart2 = [...cart]
@@ -121,7 +135,7 @@ export const CartProvider = ({children}) => {
     )
 
     return (
-        <CartContext.Provider value={{cart,cartQuantity, orderId, cartTotalPrice, addItem, removeItem, clearCart, createOrder, canBuy, checkIfCanBuy}}>
+        <CartContext.Provider value={{cart,cartQuantity, orderId, cartTotalPrice, canBuy, addItem, removeItem, addOneItem, clearCart, createOrder, checkIfCanBuy}}>
             {children}
         </CartContext.Provider>
     )
