@@ -33,7 +33,7 @@ Vista del detalle de un ítem en particular. Contiene el componente itemCount pa
 
 ### `itemCount`
 
-Vista del contador para y restar productos al carrito. Botón de "Agregar al Carrito" con render condicional (solo si está en itemDetail). Su lógica de funcionamiento la recibe de itemDetail y de cart (que a su vez la recibe del context).
+Vista del contador para sumar y restar productos al carrito. Botón de "Agregar al Carrito" con render condicional (solo si está en itemDetail). Su lógica de funcionamiento la recibe de itemDetail y de cart (que a su vez la recibe del context).
 
 ### `Context`
 
@@ -55,6 +55,6 @@ Pantalla final del proceso de compra, muestra el ID de la orden de compra genera
 
 Footer general del sitio con datos de contacto. 
 
-# Muchas gracias por llegar hasta acá y espero les guste mi proyecto!!
+## Muchas gracias por llegar hasta acá y espero les guste mi proyecto!!
 
 #### Victoria Arguijo - 2021
