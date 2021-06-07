@@ -31,7 +31,7 @@ Vista de cada ítem de itemList.
 
 Vista del detalle de un ítem en particular. Contiene el componente itemCount para agregar al carrito, y redirige al carrito para finalizar la compra. Contiene la lógica para itemCount cuando es hijo de itemDetail -funciones para sumar y restar ítems, y botón para agregar al carrito-. Contiene a itemCount
 
-### `itemCount`
+### `ItemCount`
 
 Vista del contador para sumar y restar productos al carrito. Botón de "Agregar al Carrito" con render condicional (solo si está en itemDetail). Su lógica de funcionamiento la recibe de itemDetail y de cart (que a su vez la recibe del context).
 
@@ -49,7 +49,7 @@ Pantalla final del proceso de compra, muestra el ID de la orden de compra genera
 
 ### `CartWidget`
 
-Ícono del carrito. En caso de haber productos agregados, muestra la cantidad total. Está incluido dentro de NavBar.
+Ícono del carrito. En caso de haber productos agregados, muestra la cantidad total. Está incluido dentro de NavBar. Link al carrito de compras.
 
 ### `Footer`
 
