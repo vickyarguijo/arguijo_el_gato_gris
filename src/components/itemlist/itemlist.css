@@ -9,4 +9,16 @@
     .itemList{
         flex-flow: row wrap;
     }
+    /* flex last child align left fix */
+    .itemList::after {
+        height: 0;
+        width: 50%;
+        content: ""; }
+}
+@media only screen and (min-width: 768px) {
+    /* flex last child align left fix */
+    .itemList::after {
+        height: 0;
+        width: 66.5%;
+        content: ""; }
 }
